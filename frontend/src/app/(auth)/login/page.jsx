@@ -37,14 +37,7 @@ export default function Login() {
                     }),
                 });
 
-                if (Response.ok) {
-                    const data = await Response.json();
-                    
-                    if (data.data?.isNewUser || data.data?.user?.onboardingCompleted === false) {
-                        router.push('/onboarding');
-                        return;
-                    }
-                } else {
+                if (!Response.ok) {
                     console.error('Failed to sync user');
                 }
             } catch (error) {
